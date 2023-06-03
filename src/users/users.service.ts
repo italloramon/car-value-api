@@ -13,4 +13,12 @@ export class UsersService {
     const user = this.userRepository.create({ email, password });
     return this.userRepository.save(user);
   }
+
+  findOne(id: number) {
+    return this.userRepository.findOneBy({ id });
+  }
+
+  find(email: string) {
+    return this.userRepository.findBy({ email });
+  }
 }
