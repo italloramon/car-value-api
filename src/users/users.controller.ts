@@ -43,6 +43,11 @@ export class UsersController {
     return this.userService.findOne(session.userId);
   }
 
+  @Post('signout')
+  signout(@Session() session: any) {
+    session.userId = null;
+  }
+
   @Get(':id')
   findUser(@Param('id') id: string) {
     console.log('handler is running');
