@@ -53,8 +53,7 @@ describe('AuthService', () => {
   });
 
   it('throws an error if user signs up with email that is in use', async () => {
-    fakeUsersService.find = () =>
-      Promise.resolve([{ id: 1, email: 'a', password: 'a' } as User]);
+    await service.signup('test@test.com', 'test123');
     await expect(service.signup('test@test.com', 'test123')).rejects.toThrow(
       BadRequestException,
     );
@@ -66,12 +65,8 @@ describe('AuthService', () => {
     );
   });
 
-  // When provide the same password the test should fail, but this doesnt work because the hashedpassword in implementation on service
   it('throws if a invalid password is provided', async () => {
-    fakeUsersService.find = () =>
-      Promise.resolve([
-        { email: 'test@test.com', password: 'password' } as User,
-      ]);
+    await service.signup('test@test.com', 'test123');
     await expect(service.signin('test@test.com', 'password')).rejects.toThrow(
       BadRequestException,
     );
