@@ -16,7 +16,7 @@ describe('Authentication (e2e)', () => {
   });
 
   it('handles the request to sinup', () => {
-    const emailUser = 'test@test.com';
+    const emailUser = 'test2@test.com';
 
     return request(app.getHttpServer())
       .post('/auth/signup')
